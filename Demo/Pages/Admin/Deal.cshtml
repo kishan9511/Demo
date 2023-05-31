@@ -1,0 +1,196 @@
+﻿@page
+@model Demo.Pages.Admin.DealModel
+@{
+}
+
+
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <!-- 1st container fluid start-->
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Deal </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-page="index">Home</a></li>
+                        <li class="breadcrumb-item active">DataTables</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="card card-primary card-outline card-info">
+                    <h5 class="ml-3">Deal </h5>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form method="post" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="deal.Id" />
+
+                        <div class="card-body ">
+                            <div class="row">
+
+                                <div class="col-lg-6">
+                                    <label class="ml-2"> Title </label>
+                                    <input type="text" asp-for="deal.Title" class="form-control" placeholder="Title" required>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <label class="ml-2"> Subtitle </label>
+                                    <input type="text" asp-for="deal.Subtitle" class="form-control" placeholder="Subtitle" required>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <label class="ml-2"> Details </label>
+                                    <input type="text" asp-for="deal.Details" class="form-control" placeholder="Details" required>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <label class="ml-2"> Percentage </label>
+                                    <input type="text" asp-for="deal.Percentage" class="form-control" placeholder="Percentage" required>
+                                </div>
+
+
+
+                                <div class="col-lg-6">
+                                    <label class="ml-2"> Image</label>
+
+                                    <input type="file" asp-for="Imagee" class="form-control" placeholder="Product Image">
+
+                                </div>
+
+
+                            </div>
+
+
+                            <!-- /.card-body -->
+                            <div class="text-center mt-3">
+
+                                @if (Model.deal.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-info">UPDATE</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-info">SUBMIT</button>
+
+                                }
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+
+                <form method="post">
+
+                    <div class="card-body card card-outline card-success pl-1">
+                        <div class="card-header">
+
+                            <h3 class="mr-2">Datalist</h3>
+                        </div>
+
+                        <table id="example1" class="table table-bordered table-striped">
+                            <!--For drop menu-->
+                            <thead>
+                                <tr>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Subtitle</th>
+                                    <th scope="col">Details</th>
+                                    <th scope="col">Percentage</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Action</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @if (Model.dealDatalist.Count() > 0)
+                                {
+                                    foreach (var item in Model.dealDatalist)
+                                    {
+                                        <tr>
+
+                                            <td>@item.Title</td>
+                                            <td>@item.Subtitle</td>
+                                            <td>@item.Details</td>
+                                            <td>@item.Percentage</td>
+                                            <td>
+                                                <img src="~/Images/@item.Image" style="height:50px;width:50px" alt="profile image">
+                                            </td>
+
+
+                                            <td class="mr-5">
+                                                <a asp-page="Deal" asp-route-id="@item.Id" class="btn btn-success">EDIT</a>
+
+
+                                                <button asp-page-handler="Delete" asp-route-id="@item.Id"
+                                                        onclick="return confirm('Are you sure you want to DELETE?')" class="btn btn-danger">
+                                                    DELETE
+                                                </button>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+                                else
+                                {
+
+                                    <tr>No data found</tr>
+
+                                }
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    @{
+        if (TempData["success"] != null)
+        {
+            <script type="text/javascript">
+                toastr.success('@TempData["success"]');
+            </script>
+        }
+
+        if (TempData["error"] != null)
+        {
+            <script type="text/javascript">
+                toastr.error('@TempData["error"]');
+            </script>
+        }
+        if (TempData["info"] != null)
+        {
+            <script type="text/javascript">
+                toastr.info('@TempData["info"]');
+            </script>
+        }
+    }
+
+}
+

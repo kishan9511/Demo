@@ -1,0 +1,109 @@
+﻿@page
+@model Demo.Pages.shopModel
+@{
+}
+
+
+<style>
+
+    .product-filters .catg-list a {
+        display: inline-block;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 15px;
+        border: 2px solid #051922;
+        color: #323232;
+        cursor: pointer;
+        padding: 8px 20px;
+        border-radius: 25px;
+    }
+
+        .product-filters .catg-list a.active {
+            border: 2px solid #F28123;
+            background-color: #F28123;
+            color: #fff;
+        }
+
+</style>
+
+
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Fresh and Organic</p>
+                    <h1>Shop</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+
+
+<!-- products -->
+<div class="product-section mt-150 mb-150">
+    <div class="container">
+
+
+
+        <div class="row">
+
+
+            <div class="col-md-12">
+                <div class="product-filters">
+                    <ul id="productCategory">
+                        @if (Model.Categorylist.Count() > 0)
+                        {
+                            @foreach (var category in Model.Categorylist)
+                            {
+                                <li data-categoryId="@category.Id">@category.Name</li>
+                            }
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div id="subcategoryList" class="row product-lists">
+            <div class="col-lg-4 col-md-6 text-center strawberry">
+
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a asp-page="singleProduct"><img src="~/fruitkha/assets/img/products/123.jpg" alt=""></a>
+                    </div>
+                    <h3>Electronic</h3>
+                    <p class="product-price"><span>Try & Buy</span>  Best Price </p>
+                    <a asp-page="electronics" class="cart-btn"><i class="fas fa-shopping-cart"></i>Select Your Items</a>
+                </div>
+
+            </div>
+
+        </div>
+
+ 
+
+    </div>
+</div>
+
+
+
+
+
+<!-- end products -->
+@section Scripts{
+    <script src="~/js/shop.js"></script>
+
+}

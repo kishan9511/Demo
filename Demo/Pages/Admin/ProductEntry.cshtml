@@ -1,0 +1,261 @@
+﻿@page
+@model Demo.Pages.Admin.ProductEntryModel
+@{
+}
+    
+
+
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <!-- 1st container fluid start-->
+            <div class="row mb-2"> 
+                <div class="col-sm-6">
+                    <h1>Product Entry</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-page="index">Home</a></li>
+                        <li class="breadcrumb-item active">DataTables</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="card card-primary card-outline card-info">
+                    <h5 class="ml-3">Product Entry</h5>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form method="post">
+                         
+                        <input type="hidden" asp-for="ProductEnt.ProductEntryid" />
+                        
+                        <div class="card-body">
+                              
+                          <div class="row">
+
+                            
+
+                                <div class="col-lg-4">
+                                    <label>Select Category</label>
+                                    <select class="form-control select2" id="CategoryDropdown" asp-items="Model.selectProCatOptions" asp-for="catID"></select>
+                                </div>
+
+                        
+
+
+                                <div class="col-lg-4">
+                                    <label>Select Sub Category</label>
+                                    <select class="form-control select2" id="SubCategoryDropdown" asp-items="Model.SelectSubCategoryOption" asp-for="SubCategoryID"></select>
+                                </div>
+
+
+
+
+                         
+
+                                <div class="col-lg-4">
+                                    <label>Select Brand</label>
+                                    <select class="form-control select2" id="BrandDropdown" asp-items="Model.SelectBrandOptions" asp-for="BrandID" required></select>
+                                </div>
+
+
+
+                                <div class="col-lg-3" id="DivModelId">
+                                    <label>Select Model</label>
+                                    <select class="form-control select2" id="ModelDropdown" asp-items="Model.SelectModelOptions" asp-for="Mid"></select>
+                                </div>
+
+                              
+
+                                <div class="col-lg-3" id="DivSericeId">
+                                    <label>Select Serise</label>
+                                    <select class="form-control select2" id="SeriseDropdown" asp-items="Model.selectseriOptions" asp-for="seriID"></select>
+                                </div>
+
+                            
+
+
+
+
+                                <div class="col-lg-6">
+                                    <label class="ml-2">   Product Name </label>
+                                    <input type="text" asp-for="ProductEnt.ProductName" class="form-control" placeholder=" Product Name" required>
+                                </div>   
+                                <div class="col-lg-3">
+                                    <label class="ml-2">  Actual Price </label>
+                                    <input type="text" asp-for="ProductEnt.ActualPrice" class="form-control" placeholder=" Actual Price" required>
+                                </div>
+                          
+
+                            
+                                <div class="col-lg-3">
+                                    <label class="ml-2">  Current Price </label>
+                                    <input type="text" asp-for="ProductEnt.CurrentPrice" class="form-control" placeholder=" Current Price" required>
+                                </div>
+                        
+
+                            
+                                <div class="col-lg-6">
+                                    <label class="ml-2">  Discount </label>
+                                    <input type="text" asp-for="ProductEnt.Discount" class="form-control" placeholder=" Discount" required>
+                                </div>
+                            
+
+                            
+                                <div class="col-lg-6">
+                                    <label class="ml-6"> Descriptions </label>
+                                    <textarea rows="3" asp-for="ProductEnt.Descriptions" class="form-control" placeholder=" Descriptions"></textarea>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="ml-2"> <label>Available</label></div>
+
+                                    <div class="d-block">
+                                        <div class="custom-control custom-radio custom-control-inline ml-4">
+                                            <input type="radio" id="customRadioInline1" asp-for="ProductEnt.IsAvailable" value="true" checked="checked" class="custom-control-input">
+                                            <label class="custom-control-label" for="customRadioInline1"> Yes </label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="customRadioInline2" asp-for="ProductEnt.IsAvailable" value="false" class="custom-control-input">
+                                            <label class="custom-control-label" for="customRadioInline2"> No </label>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                          
+                         </div>
+                            <!-- /.card-body -->
+                            <div class="text-center mt-3">
+
+                                    @if (Model.ProductEnt.ProductEntryid != 0)
+                                {
+                                    <button type="submit" class="btn btn-info">UPDATE</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-info">SUBMIT</button>
+
+                                }
+                            </div>
+                       
+                      </div>
+                       
+                    </form>
+                </div>
+
+                <form method="post">
+
+                    <div class="card-body card card-outline card-success pl-1">
+                        <div class="card-header">
+
+                            <h3 class="mr-2">Product Entry Datalist</h3>
+                        </div>
+
+                        <table id="example1" class="table table-bordered table-striped">
+                            <!--For drop menu-->
+                            <thead>
+                                <tr>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Sub-Category</th>
+                                    <th scope="col"> Brand</th>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Available</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @if (Model.EntryDatalist.Count() > 0)
+                                {
+                                    foreach (var item in Model.EntryDatalist)
+                                    {
+                                        <tr>
+                                            <td>@item.productCategoryName</td>
+                                            <td>@item.subCategoryname</td>
+                                            <td>@item.productBrandName </td>
+                                            <td>@item.productEntryName</td>
+                                            <td>@item.price</td>
+                                            <td>
+                                                @if(item.Available== true)
+                                                {
+                                                    <label>Yes</label>
+                                                }
+                                                else{
+                                                    <label>Update Soon</label>
+                                                }
+                                            </td>
+                                            <td class="mr-5">
+                                                <a asp-page="ProductEntry" asp-route-id="@item.productEntryid" class="btn btn-success">EDIT</a>
+
+
+                                                <button asp-page-handler="Delete" asp-route-id="@item.productEntryid"
+                                                onclick="return confirm('Are you sure you want to DELETE?')" class="btn btn-danger">
+                                                    DELETE
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+
+                                    <tr>No data found</tr>
+
+                                }
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    @{
+        if (TempData["success"] != null)
+        {
+            <script type="text/javascript">
+                toastr.success('@TempData["success"]');
+            </script>
+        }
+
+        if (TempData["error"] != null)
+        {
+            <script type="text/javascript">
+                toastr.error('@TempData["error"]');
+            </script>
+        }
+        if (TempData["info"] != null)
+        {
+            <script type="text/javascript">
+                toastr.info('@TempData["info"]');
+            </script>
+        }
+    }
+
+    <script src="~/js/Entry.js"></script>
+    <script src="~/js/Seri.js"></script>
+}
+

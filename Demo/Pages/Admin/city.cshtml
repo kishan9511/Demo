@@ -1,0 +1,248 @@
+﻿@page
+@model Demo.Pages.Admin.cityModel
+@{
+}
+
+
+
+<div class="content-wrapper">
+
+
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <!-- 1st container fluid start-->
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Cities</h1> 
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-page="index">Home</a></li>
+                        <li class="breadcrumb-item active">DataTables</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- / 1st container-fluid ends-->
+    </section>
+
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- Countrise validation -->
+                <div class="card card-primary card-outline card-info">
+
+
+
+
+
+                    <h5 class="ml-3">Cities Form</h5>
+
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form method="post" enctype="multipart/form-data">
+
+
+
+
+
+
+                    
+                        <input type="hidden" asp-for="CityModel.Id" />
+                       
+
+                        <div class="card-body">
+                            <div class="row">
+
+
+
+
+
+
+
+                                <div class="col-lg-3">
+                                    <label>Select Country</label>
+                                    <select class="form-control select2" id="countryDropdown" asp-items="Model.SelectCountry" asp-for="SelectCountryId" required></select>
+                                </div>
+
+                          
+
+
+
+                            
+
+                                 
+                                <div class="col-lg-3">
+                                    <label>Select State</label>
+                                    <select class="form-control select2" asp-items="Model.SelectOptions" asp-for="SelectedId" id="stateDropdown" required></select>
+                                </div>
+
+                          
+
+
+
+
+                                <div class="col-md-3">
+                                    <label class="ml-2">City Full Name</label>
+                                    <input type="text" asp-for="CityModel.FullName" class="form-control" placeholder=" Full Name" required>
+                                </div>
+
+
+                                <div class="col-md-3">
+                                    <label class="ml-2">PinCode</label>
+                                    <input type="text" asp-for="CityModel.Pincode" class="form-control " placeholder="PinCode" required>
+                                </div>
+
+                            </div>
+                           
+
+
+
+                            <!-- /.card-body -->
+                            <div class="text-center mt-3">
+
+                                @if (Model.CityModel.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-info">UPDATE</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-info">SUBMIT</button>
+
+                                }
+                            </div>
+
+
+
+
+                        </div>
+
+
+
+
+
+                    </form>
+
+                </div>
+
+
+
+
+
+                <form method="post">
+                    <div class="card-body card card-outline card-success pl-1">
+                        <div class="card-header">
+
+                            <h3 class="mr-2"> Datalist</h3>
+                        </div>
+                        <table id="example1" class="table table-bordered table-striped">
+                            <!--For drop menu-->
+                            <thead>
+                                <tr>
+                                    <th scope="col">Country Name</th>
+                                    <th scope="col">Country ID</th>
+                                    <th scope="col">City ID</th>
+                                    <th scope="col">State ID</th>
+                                    <th scope="col">State Name</th>
+                                    <th scope="col">City Name</th>
+                                    <th scope="col">City PinCode</th>
+                                    <th scope="col">Action</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @if (Model.datalistmodel.Count() > 0)
+                                {
+                                    foreach (var item in Model.datalistmodel)
+                                    {
+                                        <tr>
+                                            <td>@item.counteryname</td>
+                                            <td>@item.countryid</td>
+                                            <td>@item.Id</td>
+                                            <td>@item.StateId</td>
+                                            <td>@item.stateNameT</td>
+                                            <td>@item.FullName</td>
+                                            <td>@item.Pincode</td>
+
+
+                                            <td>
+                                                <a asp-page="city" asp-route-id="@item.Id" class="btn btn-success">EDIT</a>
+
+
+                                                <button asp-page-handler="Delete" asp-route-id="@item.Id"
+                                                onclick="return confirm('Are you sure you want to DELETE?')" class="btn btn-danger">
+                                                    DELETE
+                                                </button>
+
+                                            </td>
+
+
+                                        </tr>
+                                    }
+                                }
+
+
+
+                                else
+                                {
+
+                                    <tr>No data found</tr>
+
+                                }
+
+
+                            </tbody>
+
+
+                        </table>
+
+                    </div>
+
+
+                </form>
+
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+@section Scripts{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    @{
+        if (TempData["success"] != null)
+        {
+            <script type="text/javascript">
+                toastr.success('@TempData["success"]');
+            </script>
+        }
+
+        if (TempData["error"] != null)
+        {
+            <script type="text/javascript">
+                toastr.success('@TempData["error"]');
+            </script>
+        }
+        if (TempData["info"] != null)
+        {
+            <script type="text/javascript">
+                toastr.success('@TempData["info"]');
+            </script>
+        }
+    }
+    <script src="~/js/city.js"></script>
+}

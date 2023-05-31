@@ -1,0 +1,321 @@
+﻿@*@page
+@model Demo.Pages.Admin.RegistrationTModel
+@{
+}
+
+<div class="content-wrapper">
+
+     
+    <section class="content-header">
+        <div class="container-fluid">
+            <!-- 1st container fluid start-->
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Registration Form Two</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-page="index">Home</a></li>
+                        <li class="breadcrumb-item active">DataTables</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- / 1st container-fluid ends-->
+    </section>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12 ">
+                <!-- Countrise validation -->
+                <div class="card card-primary card-outline card-info">
+
+                    <h5 class="ml-3">Registration Form Two</h5>
+
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form method="post" enctype="multipart/form-data">
+
+                        <input type="hidden" asp-for="RegistModel.Id" />
+
+                        <input type="hidden" asp-for="RegistModel.CountryId" />
+                        <input type="hidden" asp-for="RegistModel.StateId" />
+                        <input type="hidden" asp-for="RegistModel.CityId" />
+
+
+
+                        <div class="card-body">
+                            <div class="row">
+
+
+
+                            
+
+                                 
+                                <div class="col-lg-4">
+                                    <label>Select Country</label>
+                                    <select class="form-control select2" asp-items="Model.SelectCountry" id="countryDropdown" asp-for="SelectCountryId" required></select>
+                                </div>
+
+                         
+
+
+
+                          
+
+
+                                <div class="col-lg-4">
+                                    <label>Select State</label>
+                                    <select class="form-control select2" asp-items="Model.SelectState" asp-for="SelectStateId" id="stateDropdown" required></select>
+                                </div>
+
+                            
+
+
+
+
+                              
+
+                                <div class="col-lg-4">
+                                    <label>Select City</label>
+                                    <select class="form-control select2" asp-items="Model.SelectCity" id="cityDropdown" asp-for="SelectCityId" required></select>
+                                </div>
+
+                             
+
+
+                                <div class="col-md-6">
+
+                                    <label class="ml-2">First Name </label>
+                                    <input type="text" asp-for="RegistModel.FirstName" class="form-control" placeholder="First Name" required>
+
+                                </div>
+                                <div class="col-md-6">
+
+                                    <label class="ml-2">Last Name </label>
+                                    <input type="text" asp-for="RegistModel.LastName" class="form-control" placeholder="Last Name" required>
+
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="ml-2">Phone Number</label>
+                                    <input type="text" asp-for="RegistModel.PhoneNumber" class="form-control " maxlength="10" placeholder="Number" required>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <label class="ml-2">DOB</label>
+                                    <input type="date" asp-for="RegistModel.Dob" class="form-control " placeholder="DOB" required>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <label class="ml-2">Email</label>
+                                    <input type="email" asp-for="RegistModel.Email" class="form-control " placeholder=" Email" required>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <label class="ml-2">Password</label>
+                                    <input type="text" asp-for="RegistModel.Password" class="form-control " placeholder=" Password" required>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <label class="ml-2">Occupation </label>
+                                    <input type="text" asp-for="RegistModel.Occupation" class="form-control" placeholder="Occupation " required>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <label class="ml-2">UID</label>
+                                    <input type="text" asp-for="RegistModel.Uidnumber" class="form-control" placeholder="UID" maxlength="12" required>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <label class="ml-2">Pan Card</label>
+                                    <input type="text" asp-for="RegistModel.PanCardId" class="form-control" placeholder="Pan Card" maxlength="10" required>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <label class="ml-2">Voter ID</label>
+                                    <input type="text" asp-for="RegistModel.VoteId" class="form-control" placeholder="Voter ID" maxlength="10" required>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <label class="ml-2">Passport Number</label>
+                                    <input type="text" asp-for="RegistModel.PassportNumber" class="form-control" placeholder="Passport Number" maxlength="9" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="ml-2">Qulification</label>
+                                    <input type="text" asp-for="RegistModel.Qualification" class="form-control" placeholder="Qulification" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="ml-2"> <label>Gender</label></div>
+
+                                    <div class="d-block">
+                                        <div class="custom-control custom-radio custom-control-inline ml-4">
+                                            <input type="radio" id="customRadioInline1" asp-for="RegistModel.Gender" value="M" class="custom-control-input" checked="checked">
+                                            <label class="custom-control-label" for="customRadioInline1"> MEN </label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="customRadioInline2" asp-for="RegistModel.Gender" value="F" class="custom-control-input">
+                                            <label class="custom-control-label" for="customRadioInline2"> WOMEN </label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="customRadioInline3" asp-for="RegistModel.Gender" value="O" class="custom-control-input">
+                                            <label class="custom-control-label" for="customRadioInline3"> Transgender </label>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-6">
+                                    <label class="ml-2">Address</label>
+                                    <input type="text" asp-for="RegistModel.Address" class="form-control" placeholder="Address" required>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div> <label class="ml-2">Image</label></div>
+                                    <input type="file" asp-for="Image" class="form-control">
+                                </div>
+
+
+                                <div class="form-group mt-2">
+                                    <div class="custom-control custom-checkbox ml-2">
+                                        <input type="radio" name="terms" class="custom-control-input" id="exampleCheck1" checked="checked">
+                                        <label class="custom-control-label" for="exampleCheck1">Is Active</label>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group mt-2">
+                                    <div class="custom-control custom-checkbox ml-2">
+                                        <input type="radio" name="terms" class="custom-control-input " id="exampleCheck2">
+                                        <label class="custom-control-label" for="exampleCheck2">Is Deactivate</label>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <!-- /.card-body -->
+                            <div class="text-center mt-3">
+
+                                @if (Model.RegistModel.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-info">UPDATE</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-info">SUBMIT</button>
+
+                                }
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+                <form method="post" enctype="multipart/form-data">
+
+                    <div class="card-body card card-outline card-success pl-1">
+                        <div class="card-header">
+
+                            <h3 class="mr-2"> Datalist</h3>
+                        </div>
+                        <table id="example1" class="table table-bordered table-striped">
+                            <!--For drop menu-->
+                            <thead>
+                                <tr>
+                                    <th scope="col"> Name</th>
+                                    <th scope="col">Phone Number</th>
+                                   <th scope="col">Location</th>
+                                    <th scope="col">image</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @if (Model.datalistModel.Count() > 0)
+                                {
+                                    foreach (var item in Model.datalistModel)
+                                    {
+                                        <tr>
+                                            <td>@item.fistnameTwo 
+                                            @item.lastnameTwo</td>
+                                            <td>@item.mobileTwo</td>
+                                            <td>@item.countrynameTwo,@item.statenameTwo,@item.citynameTwo</td>
+                                            <td>
+
+                                                <img src="~/Images/@item.imageTwo" style="higth:50px;width:50px" alt="profile pic">
+                                            </td>
+                                            <td class="mr-5">
+                                                <a asp-page="RegistrationT" asp-route-id="@item.id" class="btn btn-success">EDIT</a>
+
+
+                                                <button asp-page-handler="Delete" asp-route-id="@item.id"
+                                                onclick="return confirm('Are you sure you want to DELETE?')" class="btn btn-danger">
+                                                    DELETE
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+
+                                    <tr>No data found</tr>
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    @{
+        if (TempData["success"] != null)
+        {
+            <script type="text/javascript">
+                toastr.success('@TempData["success"]');
+            </script>
+        }
+
+        if (TempData["error"] != null)
+        {
+            <script type="text/javascript">
+                toastr.success('@TempData["error"]');
+            </script>
+        }
+        if (TempData["info"] != null)
+        {
+            <script type="text/javascript">
+                toastr.success('@TempData["info"]');
+            </script>
+        }
+    }
+<script src="~/js/RegistrationT.js"></script>
+}*@

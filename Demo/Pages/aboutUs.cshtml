@@ -1,0 +1,164 @@
+﻿@page
+@model Demo.Pages.aboutFruitkhaModel
+@{
+}
+
+ 
+
+  
+<!-- breadcrumb-section --> 
+<div class="breadcrumb-section breadcrumb-bg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2 text-center">
+				<div class="breadcrumb-text">
+					<p>@Model.aboutobj.AboutTitle</p>
+					<h1>About Us</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end breadcrumb section -->
+ 
+
+<!-- featured section -->
+<div class="feature-bg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-7">
+				<div class="featured-text">
+					<h3 class="pb-3 pt-3">@Model.aboutobj.ServiceTitle</h3>
+					<div class="row">
+						@if (Model.Servicelist.Count() > 0)
+						{
+							foreach(var itm in Model.Servicelist)
+							{
+								<div class="col-lg-6 col-md-6 mb-4 mb-md-5">
+									<div class="list-box d-flex">
+										<div class="list-icon">
+											<i class="@itm.Logo"></i>
+										</div>
+										<div class="content">
+											<h3>@itm.Title</h3>
+											<p>@itm.Details</p>
+										</div>
+									</div>
+								</div>
+							}
+						}
+						 
+					</div>
+				</div>
+			</div>
+		<div class="col-lg-5">
+			<img src="/Images/@Model.aboutobj.ServiceImage"/>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- end featured section -->
+
+
+<!-- shop banner --> 
+<section class="shop-banner" style="background-image: url(/Images/@Model.bannerobj.Image);">
+
+	<div class="container">
+		<h3>@Model.bannerobj.MainTitle <br> with big <span class="orange-text">Discount!!!</span></h3>
+		<div class="sale-percent"><span>Sale! <br> Upto</span>@Model.bannerobj.SubTitleDiscount <span>@Model.bannerobj.SubTitleValue</span></div>
+		<a href="@Model.bannerobj.Url" target="_blank" class="cart-btn btn-lg">Shop Now</a>
+	</div>
+</section>
+<!-- end shop banner -->
+
+
+<!-- team section -->
+<div class="mt-150">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2 text-center">
+				<div class="section-title">
+					<h3>Our <span class="orange-text">@Model.teamobj.TeamTitle</span></h3>
+					<p>@Model.teamobj.TeanDetails</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+
+
+			@if(Model.teanlist.Count()>0)
+			{
+				foreach(var itm in Model.teanlist)
+				{
+
+					<div class="col-lg-4 col-md-6">
+						<div class="single-team-item">
+							<div class="@itm.TeamMemberLogo"></div>
+							<h4>@itm.TeamMamberName<span>@itm.TeamMamberProfile</span></h4>
+							<ul class="social-link-team">
+								<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+								<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+								<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+							</ul>
+						</div>
+					</div>
+
+
+				}
+			}
+
+
+		</div>
+	</div>
+</div>
+<!-- end team section -->
+
+
+<!-- testimonail-section -->
+<div class="testimonail-section mt-80 mb-150">
+	<div class="container">
+	
+		<div class="row">
+
+
+			
+			<div class="col-lg-10 offset-lg-1 text-center">
+
+				<div class="testimonial-sliders">
+
+					@if (Model.teanlist.Count() > 0)
+					{
+						foreach (var itm in Model.teanlist)
+						{
+							<div class="single-testimonial-slider">
+
+								<div class="client-avater">
+									<img src="~/Images/@itm.SlidShowLogo" alt="">
+								</div>
+
+								<div class="client-meta">
+
+									<h3>@itm.SlidshowWithName <span>@itm.ShopOwnerSlidshow</span></h3>
+									<p class="testimonial-body">
+										" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi 
+										architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis 
+										unde omnis iste natus error sit voluptatem accusantium "
+									</p>
+
+									<div class="last-icon">
+										<i class="fas fa-quote-right"></i>
+									</div>
+
+								</div>
+							</div>
+						}
+					}
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end testimonail-section -->
+

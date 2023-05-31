@@ -1,0 +1,174 @@
+﻿@page
+@model Demo.Pages.Admin.HomeinfoModel
+@{
+}
+
+
+
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <!-- 1st container fluid start-->
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Home info</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-page="index">Home</a></li>
+                        <li class="breadcrumb-item active">DataTables</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="card card-primary card-outline card-info">
+                    <h5 class="ml-3">Home info</h5>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form method="post" enctype="multipart/form-data">
+
+                        <input type="hidden" asp-for="frui.Id" />
+
+                        <div class="card-body ">
+                            <div class="row">
+
+                                <div class="col-lg-6">
+                                    <label class="ml-2"> Title </label>
+                                    <input type="text" asp-for="frui.Title" class="form-control" placeholder="Title" required>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <label class="ml-2"> Details </label>
+                                    <input type="text" asp-for="frui.Details" class="form-control" placeholder="Details" required>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <label class="ml-2"> Year </label>
+                                    <input type="text" asp-for="frui.Year" class="form-control" placeholder="Year">
+                                </div>
+
+
+
+
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="text-center mt-3">
+
+                                @if (Model.frui.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-info">UPDATE</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-info">SUBMIT</button>
+
+                                }
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <form method="post">
+
+                    <div class="card-body card card-outline card-success pl-1">
+                        <div class="card-header">
+
+                            <h3 class="mr-2"> Datalist</h3>
+                        </div>
+
+                        <table id="example1" class="table table-bordered table-striped">
+                           
+                            <thead>
+                                <tr>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Details</th>
+                                    <th scope="col">Year</th>
+                                    <th scope="col">Action</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @if (Model.fruiDatalist.Count() > 0)
+                                {
+                                    foreach (var item in Model.fruiDatalist)
+                                    {
+                                        <tr>
+                                            <td>@item.Title </td>
+                                            <td>@item.Details </td>
+                                            <td>@item.Year</td>
+                                            <td class="mr-5">
+                                                <a asp-page="Homeinfo" asp-route-id="@item.Id" class="btn btn-success">EDIT</a>
+
+
+                                                <button asp-page-handler="Delete" asp-route-id="@item.Id"
+                                                        onclick="return confirm('Are you sure you want to DELETE?')" class="btn btn-danger">
+                                                    DELETE
+                                                </button>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+                                else
+                                {
+
+                                    <tr>No data found</tr>
+
+                                }
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    @{
+        if (TempData["success"] != null)
+        {
+            <script type="text/javascript">
+                            toastr.success('@TempData["success"]');
+            </script>
+        }
+
+        if (TempData["error"] != null)
+        {
+            <script type="text/javascript">
+                            toastr.error('@TempData["error"]');
+            </script>
+        }
+        if (TempData["info"] != null)
+        {
+            <script type="text/javascript">
+                            toastr.info('@TempData["info"]');
+            </script>
+        }
+    }
+
+}
+

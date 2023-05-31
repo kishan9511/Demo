@@ -1,0 +1,13 @@
+﻿@{
+    var path = $"{Context.Request.Path}/";
+    var isAdmin = path.Contains("/Admin/");
+
+    if (isAdmin)
+    {
+        Layout = "_LayoutAdmin";
+    }
+    else
+    {
+        Layout = "_LayoutFruitkha";
+    }
+}
